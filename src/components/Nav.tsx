@@ -4,6 +4,9 @@ import todo from "../assets/images/icon-todo.svg";
 import calendar from "../assets/images/icon-calendar.svg";
 import reminders from "../assets/images/icon-reminders.svg";
 import planning from "../assets/images/icon-planning.svg";
+import menu from "../assets/images/icon-menu.svg";
+import closeMenu from "../assets/images/icon-close-menu.svg";
+import { useState } from "react";
 
 type navDataType = {
   label: string;
@@ -55,24 +58,34 @@ const navData: navDataType = [
 ];
 
 const Nav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav className="font-default text-default font-medium flex items-center justify-between text-mediumGray">
-      <div className="flex items-center">
-        <div className="px-8 py-4 cursor-pointer">
-          <img src={logo} alt="logo" />
-        </div>
-        <ul className="flex items-center">
+    <nav className="font-default text-default font-medium flex items-center text-mediumGray justify-between">
+      <div className="px-8 py-4 cursor-pointer">
+        <img src={logo} alt="logo" />
+      </div>
+
+      <div
+        className={`flex flex-col lg:flex-row flex-grow items-start lg:items-center lg:justify-between ${
+          isOpen ? "top-0 right-0" : "top-0 -right-full"
+        } lg:visible absolute lg:static bg-almostWhite h-full lg:h-auto w-2/3 md:w-auto lg:w-auto pt-12 lg:pt-0 px-6 lg:px-0 transition-all`}
+      >
+        <ul className="flex flex-col lg:flex-row items-start lg:items-center w-full lg:w-auto">
           {navData.map((nav, i) => (
-            <li key={i} className="cursor-pointer px-6 py-5 relative group">
-              <p className="flex items-center gap-2">
-                <span className="hover:text-almostBlack transition-all ">
+            <li
+              key={i}
+              className="cursor-pointer lg:px-6 py-1 lg:py-5 relative group w-full lg:w-auto"
+            >
+              <p className="flex items-center gap-2 w-full lg:w-auto">
+                <span className="hover:text-almostBlack transition-all">
                   {nav.label}
                 </span>
                 {nav.children && <img src={downArrow} />}
               </p>
 
               {nav.children && (
-                <div className="opacity-0 group-hover:opacity-100 absolute top-16 right-0 bg-almostWhite p-4 flex flex-col gap-4 rounded-xl shadow-sm shadow-almostBlack transition-all">
+                <div className="invisible group-hover:visible static lg:absolute top-16 right-0 bg-almostWhite p-4 flex flex-col gap-4 lg:rounded-xl lg:shadow-sm shadow-almostBlack transition-all w-full lg:w-auto">
                   {nav.children.map((item, i) => (
                     <a
                       key={i}
@@ -88,15 +101,21 @@ const Nav = () => {
             </li>
           ))}
         </ul>
+        <div className="flex flex-col lg:flex-row items-center gap-2 lg:mr-4 w-full lg:w-auto">
+          <button className="px-6 py-2 hover:text-almostBlack transition-all w-full lg:w-auto">
+            Login
+          </button>
+          <button className="px-6 py-2 border-2 border-mediumGray rounded-2xl hover:border-almostBlack hover:text-almostBlack transition-all w-full lg:w-auto ">
+            Register
+          </button>
+        </div>
       </div>
-      <div className="flex items-center gap-2 mr-4">
-        <button className="px-6 py-2 hover:text-almostBlack transition-all">
-          Login
-        </button>
-        <button className="px-6 py-2 border-2 border-mediumGray rounded-2xl hover:border-almostBlack hover:text-almostBlack transition-all">
-          Register
-        </button>
-      </div>
+
+      <img
+        src={isOpen ? closeMenu : menu}
+        className="block mr-4 lg:hidden z-10"
+        onClick={() => setIsOpen(!isOpen)}
+      />
     </nav>
   );
 };
