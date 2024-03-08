@@ -1,5 +1,6 @@
 import logo from "../assets/images/logo.svg";
 import downArrow from "../assets/images/icon-arrow-down.svg";
+import upArrow from "../assets/images/icon-arrow-up.svg";
 import todo from "../assets/images/icon-todo.svg";
 import calendar from "../assets/images/icon-calendar.svg";
 import reminders from "../assets/images/icon-reminders.svg";
@@ -61,59 +62,51 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="font-default text-default font-medium flex items-center text-mediumGray justify-between">
-      <div className="px-8 py-4 cursor-pointer">
-        <img src={logo} alt="logo" />
-      </div>
+    <nav className="h-16 flex items-center justify-between gap-8 px-8 relative">
+      {/* Logo */}
+      <img src={logo} alt="logo" />
 
-      <div
-        className={`flex flex-col lg:flex-row flex-grow items-start lg:items-center lg:justify-between ${
-          isOpen ? "top-0 right-0" : "top-0 -right-full"
-        } lg:visible absolute lg:static bg-almostWhite h-full lg:h-auto w-2/3 md:w-auto lg:w-auto pt-12 lg:pt-0 px-6 lg:px-0 transition-all`}
+      {/* Links & Btns */}
+      <section
+        className={`flex-grow h-screen md:h-full w-screen md:w-auto absolute md:static top-0 right-0 ${
+          !isOpen ? "" : "bg-black bg-opacity-50"
+        }`}
       >
-        <ul className="flex flex-col lg:flex-row items-start lg:items-center w-full lg:w-auto">
-          {navData.map((nav, i) => (
-            <li
-              key={i}
-              className="cursor-pointer lg:px-6 py-1 lg:py-5 relative group w-full lg:w-auto"
-            >
-              <p className="flex items-center gap-2 w-full lg:w-auto">
-                <span className="hover:text-almostBlack transition-all">
-                  {nav.label}
-                </span>
-                {nav.children && <img src={downArrow} />}
-              </p>
+        <div
+          className={`flex items-center md:justify-between h-full flex-col md:flex-row w-2/3 md:w-auto ml-auto absolute md:static top-0 ${
+            !isOpen ? "-right-2/3" : "right-0"
+          } pt-16 md:pt-0 bg-almostWhite px-6 md:px-0 transition-all`}
+        >
+          {/* Nav Links */}
+          <div className="flex gap-6 md:h-full flex-col md:flex-row w-full md:w-auto transition-all">
+            {navData.map((nav, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-1 cursor-pointer h-full hover:text-almostBlack"
+              >
+                <a href="#">{nav.label}</a>
+                {nav.children && <img src={downArrow} alt="arrow icon" />}
+              </div>
+            ))}
+          </div>
 
-              {nav.children && (
-                <div className="invisible group-hover:visible static lg:absolute top-16 right-0 bg-almostWhite p-4 flex flex-col gap-4 lg:rounded-xl lg:shadow-sm shadow-almostBlack transition-all w-full lg:w-auto">
-                  {nav.children.map((item, i) => (
-                    <a
-                      key={i}
-                      href="#"
-                      className="flex items-center hover:text-almostBlack"
-                    >
-                      <img src={item.icon} className="pr-3" />
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-        <div className="flex flex-col lg:flex-row items-center gap-2 lg:mr-4 w-full lg:w-auto">
-          <button className="px-6 py-2 hover:text-almostBlack transition-all w-full lg:w-auto">
-            Login
-          </button>
-          <button className="px-6 py-2 border-2 border-mediumGray rounded-2xl hover:border-almostBlack hover:text-almostBlack transition-all w-full lg:w-auto ">
-            Register
-          </button>
+          {/* Btn */}
+          <div className="flex gap-4 flex-col md:flex-row w-full md:w-auto">
+            <button className="py-2 px-4 hover:text-almostBlack transition-all">
+              Login
+            </button>
+            <button className="py-2 px-4 border-2 border-mediumGray rounded-xl hover:border-almostBlack hover:text-almostBlack transition-all">
+              Register
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
 
+      {/* Menu icon */}
       <img
         src={isOpen ? closeMenu : menu}
-        className="block mr-4 lg:hidden z-10"
+        alt="menu icon"
+        className="block md:hidden cursor-pointer z-10"
         onClick={() => setIsOpen(!isOpen)}
       />
     </nav>

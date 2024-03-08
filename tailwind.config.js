@@ -14,6 +14,9 @@ export default {
       fontFamily: {
         default: '"Epilogue", sans-serif',
       },
+      height: {
+        navMobile: "calc(100vh - 64px)",
+      },
     },
   },
   plugins: [],
