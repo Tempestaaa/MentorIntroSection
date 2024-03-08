@@ -36,7 +36,7 @@ const Content = () => {
         <img
           src={heroMobile}
           alt="hero image"
-          className="w-full h-[250px] md:h-auto max-w-[375px] md:max-w-[400px] "
+          className="w-full h-[250px] md:h-auto md:max-w-[450px] "
         />
       </picture>
     </section>
