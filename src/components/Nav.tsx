@@ -11,7 +11,7 @@ import { useState } from "react";
 
 type navDataType = {
   label: string;
-  children?: { name?: string; icon?: string }[];
+  children?: { name: string; icon?: string }[];
 }[];
 
 const navData: navDataType = [
