@@ -17,6 +17,9 @@ export default {
       height: {
         navMobile: "calc(100vh - 64px)",
       },
+      boxShadow: {
+        navMobile: "2px 2px 12px 0 hsl(0, 0%, 100%)",
+      },
     },
   },
   plugins: [],
