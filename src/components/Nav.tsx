@@ -97,7 +97,7 @@ const Nav = () => {
                 </div>
 
                 {nav.children && (
-                  <div className="md:absolute md:top-full md:right-0 bg-almostWhite md:shadow-navMobile md:shadow-almostBlack px-2 py-2 group-hover:py-0 md:py-4 text-base md:w-32 hide group-hover:visible group-hover:flex flex-col gap-2 rounded-xl transition-all">
+                  <div className="md:absolute md:top-full md:right-0 bg-almostWhite md:shadow-navMobile md:shadow-almostBlack px-2 py-2 md:py-4 text-base md:w-32 hide group-hover:visible group-hover:flex flex-col gap-2 rounded-xl transition-all">
                     {nav.children?.map((item, i) => (
                       <div key={i} className="">
                         <div className="flex items-center hover:text-almostBlack ">
